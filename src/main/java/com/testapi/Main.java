@@ -23,7 +23,7 @@ public class Main {
             misu3.add(c);
         }
         String newMisu = misu3.toString();
-        System.out.println("Misu: " + misu3);
+        System.out.println("Mihail: " + misu3);
 
 
         File file = new File("src/main/java");
