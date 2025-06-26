@@ -41,7 +41,7 @@ public class Main {
 //
 
         List<String> list = new ArrayList<>();
-        list.add(0, "Misu");
+        list.add(0, "Mihail");
         list.add(0, "Misu2");
         System.out.println(list);
         System.out.println(list.get(1));
