@@ -12,7 +12,7 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         //BaseTest.sendGetRequest("https://dummy.restapiexample.com/api/v1/employees");
-        String misu = "mama,aremere";
+        String misu = "mam,aremere";
         String[] misu2 = misu.split(" ");
         System.out.println(Arrays.toString(misu2));
         Set<Character> misu3 = new HashSet<>();
