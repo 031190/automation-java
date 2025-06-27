@@ -1,26 +1,27 @@
 package com.testapi;
 
-import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class RestAssuredRequests {
 
-    private RequestSpecBuilder specBuilder;
+    public RequestSpecification requestSpecification;
 
-    public RestAssuredRequests(RequestSpecBuilder specBuilder) {
-        this.specBuilder = specBuilder;
+    public RestAssuredRequests(RequestSpecification requestSpecification) {
+        this.requestSpecification = requestSpecification;
     }
 
     public Response postRequest() {
-        return RestAssured.given(specBuilder.build()).log().all().post().then().log().all().extract().response();
+        return given(requestSpecification).log().all().post().then().log().all().extract().response();
     }
 
     public Response getRequest() {
-        return RestAssured.given(specBuilder.build()).log().all().get().then().log().all().extract().response();
+        return given(requestSpecification).log().all().get().then().log().all().extract().response();
     }
 
     public Response deleteRequest() {
-        return RestAssured.given().log().all().delete().then().log().all().extract().response();
+        return given().log().all().delete().then().log().all().extract().response();
     }
 }

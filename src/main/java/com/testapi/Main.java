@@ -12,6 +12,8 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         //BaseTest.sendGetRequest("https://dummy.restapiexample.com/api/v1/employees");
+        String test5 = "sdfdsgs" + 2;
+        System.out.println("test2" + test5);
         String misu = "mam,aremere";
         String[] misu2 = misu.split(" ");
         System.out.println(Arrays.toString(misu2));

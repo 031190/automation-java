@@ -10,13 +10,13 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = false)
 public class EmployeeResponse {
     @JsonProperty("status")
-    String status;
+    private String status;
 
     @JsonProperty("data")
-    List<DataObj> dataObj;
+    private List<DataObj> dataObj;
 
     @JsonProperty("messages")
-    int message;
+    private int message;
 
     public String getStatus() {
         return status;
