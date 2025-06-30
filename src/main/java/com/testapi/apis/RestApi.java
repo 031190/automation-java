@@ -2,6 +2,7 @@ package com.testapi.apis;
 
 import com.testapi.utils.ConfigLoader;
 import com.testapi.restAssuredWrapper.RestAssuredRequests;
+import com.testapi.utils.Parser;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
@@ -31,20 +32,10 @@ public class RestApi {
     }
 
     public Response createAnEntry(String jsonFileName) {
-        String bodyLocation = "src/main/resources/" + jsonFileName;
         Map<String,String> headers = new HashMap<>();
-        headers.put("Content-type","application/json");
         requestSpecBuilder.addHeaders(headers);
-
         // TO BE REVIEWED - OTHER WAYS TO SET JSON BODY
-        JSONParser jsonParser = new JSONParser();
-        try {
-            JSONObject json = (JSONObject) jsonParser.parse(new FileReader(bodyLocation));
-            String body = jsonParser.parse(json.toString()).toString();
-            requestSpecBuilder.setBody(body);
-        } catch (Exception e) {
-            System.out.println("FILE NOT FOUND");
-        }
+        requestSpecBuilder.setBody(Parser.getJsonAsStringFromResources(jsonFileName));
         requestSpecBuilder.setBasePath(ConfigLoader.getRestApiEndpointCreateEntry());
         return restAssuredRequests.postRequest(requestSpecBuilder.build());
     }
@@ -67,18 +58,8 @@ public class RestApi {
         return restAssuredRequests.getRequest(requestSpecBuilder.build());
     }
 
-    public boolean validateCreateEntry(String jsonBodySent, String jsonBodyReceived) {
-        File requestBodyFile = new File("src/main/resources/" + jsonBodySent);
-        try {
-            FileInputStream fileInputStream = new FileInputStream(requestBodyFile);
-            System.out.println("Check1 + " + new String(fileInputStream.readAllBytes()));
-            System.out.println("check2 + " + jsonBodyReceived);
-            return jsonBodyReceived.contains(new String(fileInputStream.readAllBytes()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        //JSONObject
-        //Files.readString(Paths.get(jsonBodySent))
+    public boolean validateCreateEntry(String jsonFileSent, String jsonBodyReceived) {
+        return jsonBodyReceived.contains(Parser.getJsonAsStringFromResources(jsonFileSent));
     }
 
 }

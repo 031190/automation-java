@@ -1,6 +1,7 @@
 package com.testapi.tests;
 
 import com.testapi.apis.RestApi;
+import com.testapi.utils.Parser;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,7 +10,8 @@ import com.testapi.pojo.RestApiGetEntryBody;
 
 public class RestApiTest {
 
-    RestApi restApi = new RestApi();
+    private RestApi restApi;
+    public RestApiTest() { restApi = new RestApi(); }
 
     @Test
     public void testCheckAllEntries() {
@@ -19,11 +21,11 @@ public class RestApiTest {
 
     @Test
     public void testCreateNewEntry() {
-        Response response = restApi.createAnEntry("testData/restApiPostRequest.json");
+        Response response = restApi.createAnEntry("restApiPostRequest.json");
         Assert.assertEquals(response.getStatusCode(),200);
         RestApiCreateEntryResponse responseBody = response.getBody().as(RestApiCreateEntryResponse.class);
         Assert.assertTrue(response.getHeaders().toString().contains("json"));
-        Assert.assertTrue(restApi.validateCreateEntry("testData/restApiPostRequest.json",responseBody.getData().toString()));
+        Assert.assertTrue(restApi.validateCreateEntry("restApiPostRequest.json",responseBody.getData().toString()));
         //Assert.assertTrue(validateCreateEntry("restApiPostRequest.json", response.getBody().asString()));
     }
 

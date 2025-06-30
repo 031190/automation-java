@@ -9,4 +9,9 @@ public class BaseTest {
     public void setup() {
 
     }
+
+    @BeforeTest
+    public void tearDown() {
+
+    }
 }
