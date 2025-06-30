@@ -16,14 +16,9 @@ public class RestApi {
     private RequestSpecBuilder requestSpecBuilder;
     private RestAssuredRequests restAssuredRequests;
 
-    public RestApi() {
+    public RestApi(RequestSpecBuilder requestSpecBuilder) {
         restAssuredRequests = new RestAssuredRequests();
-        requestSpecBuilder = new RequestSpecBuilder();
-        requestSpecBuilder.setBaseUri(ConfigLoader.getEnvUrl());
-        requestSpecBuilder.addHeader("Content-type","application/json");
-        if (ConfigLoader.getRelaxedHttpValidation()) {
-            requestSpecBuilder.setRelaxedHTTPSValidation();
-        }
+        this.requestSpecBuilder = requestSpecBuilder;
     }
 
     public Response getAllEntries() {
@@ -59,7 +54,10 @@ public class RestApi {
     }
 
     public boolean validateCreateEntry(String jsonFileSent, String jsonBodyReceived) {
-        return jsonBodyReceived.contains(Parser.getJsonAsStringFromResources(jsonFileSent));
+        String check = Parser.getJsonAsStringFromResources(jsonFileSent);
+        System.out.println("Check1: " + check);
+        System.out.println("Check2: " + jsonBodyReceived);
+        return check.contains(jsonBodyReceived);
     }
 
 }
