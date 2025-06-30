@@ -1,4 +1,4 @@
-package pojo;
+package com.testapi.pojo;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

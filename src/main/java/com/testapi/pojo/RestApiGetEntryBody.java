@@ -1,18 +1,9 @@
-package pojo;
+package com.testapi.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class RestApiGetEntryBody {
-    @JsonIgnoreProperties("id")
     private String id;
-
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("data")
-    private RestApiEntryDataObj dataObj;
+    private RestApiEntryDataObj data;
 
     public String getId() {
         return id;
@@ -30,12 +21,12 @@ public class RestApiGetEntryBody {
         this.name = name;
     }
 
-    public RestApiEntryDataObj getDataObj() {
-        return dataObj;
+    public RestApiEntryDataObj getData() {
+        return data;
     }
 
-    public void setDataObj(RestApiEntryDataObj dataObj) {
-        this.dataObj = dataObj;
+    public void setData(RestApiEntryDataObj dataObj) {
+        this.data = dataObj;
     }
 
     @Override
@@ -43,7 +34,7 @@ public class RestApiGetEntryBody {
         return "RestApiGetEntryBody{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", data=" + dataObj.toString() +
+                ", data=" + data.toString() +
                 '}';
     }
 }

@@ -1,13 +1,6 @@
 package com.testapi.tests;
 
 import com.testapi.BaseTest;
-import com.testapi.RestAssuredRequests;
-import org.json.simple.parser.ParseException;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ApiTest extends BaseTest {
 

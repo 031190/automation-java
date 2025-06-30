@@ -2,17 +2,13 @@ package com.testapi;
 
 import static io.restassured.RestAssured.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import groovy.json.JsonParser;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
-import org.junit.Assert;
-import pojo.EmployeeResponse;
+import com.testapi.pojo.EmployeeResponse;
 import org.json.simple.parser.*;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;

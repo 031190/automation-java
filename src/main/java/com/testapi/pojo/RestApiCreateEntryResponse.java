@@ -1,4 +1,4 @@
-package pojo;
+package com.testapi.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +10,7 @@ public class RestApiCreateEntryResponse {
     private String name;
     private String createdAt;
     //@JsonProperty("data")
-    private Map<String, Object> data;
+    private Map<String, String> data;
 
     public String getId() {
         return id;
@@ -36,11 +36,11 @@ public class RestApiCreateEntryResponse {
         this.createdAt = createdAt;
     }
 
-    public Map<String, Object> getData() {
+    public Map<String, String> getData() {
         return data;
     }
 
-    public void setData(Map<String, Object> data) {
+    public void setData(Map<String, String> data) {
         this.data = data;
     }
 }

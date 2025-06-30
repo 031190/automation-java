@@ -1,34 +1,33 @@
 package com.testapi.apis;
 
-import Utils.ConfigLoader;
-import com.testapi.RestAssuredRequests;
+import com.testapi.utils.ConfigLoader;
+import com.testapi.restAssuredWrapper.RestAssuredRequests;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RestApi {
-
-    //private final String url = "https://api.restful-api.dev";
-    //private final String endpoint = "/objects";
-    RequestSpecBuilder requestSpecBuilder;
+    private RequestSpecBuilder requestSpecBuilder;
+    private RestAssuredRequests restAssuredRequests;
 
     public RestApi() {
+        restAssuredRequests = new RestAssuredRequests();
         requestSpecBuilder = new RequestSpecBuilder();
-        //requestSpecBuilder.setBaseUri(url);
         requestSpecBuilder.setBaseUri(ConfigLoader.getEnvUrl());
-        //requestSpecBuilder.setBasePath(endpoint);
+        requestSpecBuilder.addHeader("Content-type","application/json");
+        if (ConfigLoader.getRelaxedHttpValidation()) {
+            requestSpecBuilder.setRelaxedHTTPSValidation();
+        }
     }
 
     public Response getAllEntries() {
         requestSpecBuilder.setBasePath(ConfigLoader.getRestApiEndpointGetAllEntries());
-        return new RestAssuredRequests(requestSpecBuilder.build()).getRequest();
+        return restAssuredRequests.getRequest(requestSpecBuilder.build());
     }
 
     public Response createAnEntry(String jsonFileName) {
@@ -47,7 +46,7 @@ public class RestApi {
             System.out.println("FILE NOT FOUND");
         }
         requestSpecBuilder.setBasePath(ConfigLoader.getRestApiEndpointCreateEntry());
-        return new RestAssuredRequests(requestSpecBuilder.build()).postRequest();
+        return restAssuredRequests.postRequest(requestSpecBuilder.build());
     }
 
     public Response getEntries(int ... values ) {
@@ -65,7 +64,7 @@ public class RestApi {
                 }
                 break;
         }
-        return new RestAssuredRequests(requestSpecBuilder.build()).getRequest();
+        return restAssuredRequests.getRequest(requestSpecBuilder.build());
     }
 
     public boolean validateCreateEntry(String jsonBodySent, String jsonBodyReceived) {
