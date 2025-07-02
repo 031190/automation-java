@@ -3,18 +3,18 @@ package com.testapi.pojo.petApiPojos;
 import java.util.List;
 
 public class Pet {
-    private int id;
+    private long id;
     private CategoryAndTag category;
     private String name;
     private List<String> photoUrls;
     private List<CategoryAndTag> tags;
     private String status;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

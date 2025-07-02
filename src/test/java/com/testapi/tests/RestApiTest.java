@@ -23,7 +23,6 @@ public class RestApiTest extends BaseTest {
     @Test
     public void testRestApiGetEntriesByIDS() {
         RestApi restApi = new RestApi(requestSpecBuilder);
-        //List<Map<String,Object>> queryParams = List.of(Map.of("id",3),Map.of("id",5));
         Map<String,List<Object>> queryParams = Map.of("id", List.of(3,5));
         Response response = restApi.getAllEntriesByIDs(queryParams);
         Assert.assertEquals(response.getStatusCode(),200);
