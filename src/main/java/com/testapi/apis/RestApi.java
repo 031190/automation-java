@@ -25,20 +25,20 @@ public class RestApi {
     }
 
     public Response getAllEntries() {
-        return apiBuilder.buildRequest(ConfigLoader.getRestApiEndpoint(),"get",null,null,null,null);
+        return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"get",null,null,null,null);
     }
 
-    public Response getAllEntriesByIDs(List<Map<String,Object>> queryParams) {
-        return apiBuilder.buildRequest(ConfigLoader.getRestApiEndpoint(),"get",null,null,null,queryParams);
+    public Response getAllEntriesByIDs(Map<String,List<Object>> queryParams) {
+        return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"get",null,null,null,queryParams);
     }
 
-    public Response getEntryById(Object id) {
-        String endpoint = ConfigLoader.getRestApiEndpoint() + "/" + id;
-        return apiBuilder.buildRequest(endpoint,"get",null,null,null,null);
+    public Response getEntryById(Integer id) {
+        //String endpoint = ConfigLoader.getRestApiRoute() + "/" + id;
+        return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"get",null,null,id,null);
      }
 
      public Response createAnEntry(String jsonFile) {
-         return apiBuilder.buildRequest(ConfigLoader.getRestApiEndpoint(),"post",Map.of("Content-type","application/json"),Parser.getJsonAsStringFromResources(jsonFile),null,null);
+         return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"post",Map.of("Content-type","application/json"),Parser.getJsonAsStringFromResources(jsonFile),null,null);
      }
 
     public boolean validateCreateEntry(String jsonFileSent, Object jsonBodyReceived) {

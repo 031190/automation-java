@@ -12,7 +12,6 @@ public class ConfigLoader {
     private static final Properties props = new Properties();
 
     static {
-        System.out.println("ConfigLoader");
         try{
             InputStream envFile = ConfigLoader.class.getClassLoader().getResourceAsStream(System.getProperty("env", "dev") + ".properties");
             props.load(envFile);
@@ -24,7 +23,8 @@ public class ConfigLoader {
     }
 
     public static String getBaseUrl() { return props.getProperty("baseUrl"); }
-    public static String getRestApiEndpoint() { return props.getProperty("restApiRoute"); }
+    public static String getRestApiRoute() { return props.getProperty("restApiRoute"); }
+    public static String getPetApiRoute() { return props.getProperty("petApiRoute"); }
     public static boolean getRelaxedHttpValidation() {
         if (props.getProperty("relaxedHttpValidation") != null) {
             return Boolean.parseBoolean(props.getProperty("relaxedHttpValidation"));

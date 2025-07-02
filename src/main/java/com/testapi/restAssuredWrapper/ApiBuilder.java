@@ -6,11 +6,13 @@ import io.restassured.specification.RequestSpecification;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
 import static io.restassured.RestAssured.*;
 
 public class ApiBuilder {
 
-    private final RequestSpecBuilder requestSpecBuilder;
+    public final RequestSpecBuilder requestSpecBuilder;
 
     public ApiBuilder(RequestSpecBuilder specBuilder) {
         requestSpecBuilder = specBuilder;
@@ -21,14 +23,14 @@ public class ApiBuilder {
         return requestSpecBuilder.build();
     }
 
-    public Response buildRequest(String endpoint, String method, Map<String,String> headers, Object body, String pathParameter, List<Map<String,Object>> queryParams) {
+    public Response buildRequest(String endpoint, String method, Map<String,String> headers, Object body, Integer pathParameter, Map<String,List<Object>> queryParams) {
         // create a copy of original req spec builder - to not keep save the values each time this method is called
         RequestSpecBuilder rspec = new RequestSpecBuilder();
         rspec.addRequestSpecification(getRequestSpecification());
 
         String endPoint = endpoint;
         if (pathParameter != null) {
-            endPoint += pathParameter;
+            endPoint += "/" + pathParameter;
         }
 
         if (endPoint != null) {
@@ -44,11 +46,17 @@ public class ApiBuilder {
         }
 
         if (queryParams != null) {
-            for(Map<String,Object> entry2 : queryParams) {
-                for (Map.Entry<String,Object> entry : entry2.entrySet()) {
-                    rspec.addQueryParam(entry.getKey(),entry.getValue());
+            for (Map.Entry<String,List<Object>> entry : queryParams.entrySet()) {
+                for (Object object : entry.getValue()) {
+                    rspec.addQueryParam(entry.getKey(),object);
                 }
             }
+//
+//            for(Map<String,Object> entry2 : queryParams) {
+//                for (Map.Entry<String,Object> entry : entry2.entrySet()) {
+//                    rspec.addQueryParam(entry.getKey(),entry.getValue());
+//                }
+//            }
         }
 
         switch (method.toLowerCase()){

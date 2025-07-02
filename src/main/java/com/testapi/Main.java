@@ -11,95 +11,36 @@ public class Main {
     public static void main(String[] args) throws IOException {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        //BaseTest.sendGetRequest("https://dummy.restapiexample.com/api/v1/employees");
-        String test5 = "sdfdsgs" + 2;
-        System.out.println("test2" + test5);
-        String misu = "mam,aremere";
-        String[] misu2 = misu.split(" ");
-        System.out.println(Arrays.toString(misu2));
-        Set<Character> misu3 = new HashSet<>();
-        for (int i=0;i<misu.length();i++) {
-           misu3.add(misu.charAt(i));
-        }
-        for (Character c:misu3) {
-            misu3.add(c);
-        }
-        String newMisu = misu3.toString();
-        System.out.println("Mihail: " + misu3);
-
 
         File file = new File("src/main/java");
         func(file.listFiles());
-        //List<File> file3 = file.listFiles();
-//        for (File x : files) {
-//            System.out.println(x.getName());
-//            FileReader fileReader = new FileReader(x);
-//            BufferedReader br = new BufferedReader(fileReader);
-//            String line = br.readLine();
-//            while ( line != null) {
-//                System.out.println(line);
-//                line = br.readLine();
-//            }
-//
-
-        List<String> list = new ArrayList<>();
-        list.add(0, "Mihail");
-        list.add(0, "Misu2");
-        System.out.println(list);
-        System.out.println(list.get(1));
-
-        System.out.println("TEST:");
-        String test = "ccaavbn&dddg&ch";
-        String text2 = "";
-        for (int i = 0; i<test.length(); i++) {
-
-            int count = 1;
-            for (int j = i+1; j<test.length();j++) {
-                if (test.charAt(i) == test.charAt(j) ) {
-                    count++;
-                }
-            }
-            if (count > 1 && !text2.contains(String.valueOf(test.charAt(i)))) {
-                System.out.println("Char : " + test.charAt(i) + " appeared times:" + count);
-            }
-            if (!text2.contains(String.valueOf(test.charAt(i)))) {
-                text2 += test.charAt(i) + String.valueOf(count);
-            }
-        }
-        System.out.println(text2);
 
         System.out.println("TEST2:");
         String test2 = "aaaabbc444&&&&&aazccc";
-        String rezult = "";
-        int count = 0;
-        //int count2 = 0;
+        String result = "";
+        int count;
         for (int i = 0; i<test2.length(); i+=count) {
             count = 0;
             String x = "";
             for (int j = i; j<test2.length();j++) {
                 if (test2.charAt(i) == test2.charAt(j) ) {
-                    //count2++;
                     count++;
                     if (j == test2.length()-1) {
                         x = test2.charAt(i) + String.valueOf(count);
-                        rezult += x;
-                        //count = count2;
+                        result += x;
                     }
                 } else {
-                   // count = count2 ;
                     x = test2.charAt(i)  + String.valueOf(count);
-                    rezult += x;
-                    //count2 = 0;
+                    result += x;
                     break;
-                    }
+                }
             }
         }
-
-        System.out.println(rezult);
+        System.out.println(result);
 
         System.out.println("TEST3:");
         String test3 = "aaaabbc444&&&&&aazccc";
-        String result = "";
+        String resultString = "";
         int poz = 0;
         int count2 = 0;
         while (poz < test3.length()) {
@@ -110,11 +51,11 @@ public class Main {
                     break;
                 }
             }
-            result += test3.charAt(poz) + String.valueOf(count2);
+            resultString += test3.charAt(poz) + String.valueOf(count2);
             poz += count2;
             count2 = 0;
         }
-        System.out.println(result);
+        System.out.println(resultString);
     }
     public static void func(File[] files) {
 
@@ -130,9 +71,7 @@ public class Main {
                 } catch (IOException e){
                     System.out.println("FILE NOT FOUND");
                 }
-
             }
-
         }
     }
 }

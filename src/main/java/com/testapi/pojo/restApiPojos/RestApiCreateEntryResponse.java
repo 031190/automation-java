@@ -1,9 +1,6 @@
-package com.testapi.pojo;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.testapi.pojo.restApiPojos;
 
 import java.util.Map;
-import java.util.Objects;
 
 public class RestApiCreateEntryResponse {
     private String id;

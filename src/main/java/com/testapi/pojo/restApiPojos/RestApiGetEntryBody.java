@@ -1,4 +1,4 @@
-package com.testapi.pojo;
+package com.testapi.pojo.restApiPojos;
 
 public class RestApiGetEntryBody {
     private String id;

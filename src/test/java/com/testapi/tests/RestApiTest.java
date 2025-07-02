@@ -5,8 +5,8 @@ import com.testapi.init.BaseTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.testapi.pojo.RestApiCreateEntryResponse;
-import com.testapi.pojo.RestApiGetEntryBody;
+import com.testapi.pojo.restApiPojos.RestApiCreateEntryResponse;
+import com.testapi.pojo.restApiPojos.RestApiGetEntryBody;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,8 @@ public class RestApiTest extends BaseTest {
     @Test
     public void testRestApiGetEntriesByIDS() {
         RestApi restApi = new RestApi(requestSpecBuilder);
-        List<Map<String,Object>> queryParams = List.of(Map.of("id",3),Map.of("id",5));
+        //List<Map<String,Object>> queryParams = List.of(Map.of("id",3),Map.of("id",5));
+        Map<String,List<Object>> queryParams = Map.of("id", List.of(3,5));
         Response response = restApi.getAllEntriesByIDs(queryParams);
         Assert.assertEquals(response.getStatusCode(),200);
     }
