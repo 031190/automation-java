@@ -38,18 +38,17 @@ public class RestApi {
      }
 
      public Response createAnEntry(String jsonFile) {
-         return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"post",Map.of("Content-type","application/json"),Parser.getJsonAsStringFromResources(jsonFile),null,null);
+         return apiBuilder.buildRequest(ConfigLoader.getRestApiRoute(),"post",Map.of("Content-type","application/json"),Parser.getFileAsStringFromResources(jsonFile),null,null);
      }
 
     public boolean validateCreateEntry(String jsonFileSent, Object jsonBodyReceived) {
-        String jsonSent = Parser.getJsonAsStringFromResources(jsonFileSent);
+        String jsonSent = Parser.getFileAsStringFromResources(jsonFileSent);
         List<String> list = List.of("id","createdAt");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode jsonFileSentNode = objectMapper.readTree(jsonSent);
             JsonNode jsonBodyReceivedNode = objectMapper.valueToTree(jsonBodyReceived);
             ((ObjectNode) jsonBodyReceivedNode).remove(list);
-
             return jsonBodyReceivedNode.equals(jsonFileSentNode);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

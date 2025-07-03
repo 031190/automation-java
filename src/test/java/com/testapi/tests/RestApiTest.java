@@ -31,7 +31,7 @@ public class RestApiTest extends BaseTest {
     @Test
     public void testRestApiGetEntryById() {
         RestApi restApi = new RestApi(requestSpecBuilder);
-        int id=5;
+        int id = 5;
         Response response = restApi.getEntryById(id);
         Assert.assertEquals(response.getStatusCode(),200);
         Assert.assertEquals(String.valueOf(id), response.getBody().jsonPath().get("id"));

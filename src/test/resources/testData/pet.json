@@ -1,0 +1,19 @@
+{
+  "id": 710207516,
+  "category": {
+    "id": 5,
+    "name": "Mihail category"
+  },
+  "name": "Mihail pet",
+  "photoUrls": [
+    "Mihail photo 1",
+    "Mihail photo 2"
+  ],
+  "tags": [
+    {
+      "id": 9,
+      "name": "Mihail tag"
+    }
+  ],
+  "status": "pending"
+}

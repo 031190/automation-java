@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.*;
 
 public class ApiBuilder {
 
-    public final RequestSpecBuilder requestSpecBuilder;
+    private final RequestSpecBuilder requestSpecBuilder;
 
     public ApiBuilder(RequestSpecBuilder specBuilder) {
         requestSpecBuilder = specBuilder;
@@ -51,12 +51,7 @@ public class ApiBuilder {
                     rspec.addQueryParam(entry.getKey(),object);
                 }
             }
-//
-//            for(Map<String,Object> entry2 : queryParams) {
-//                for (Map.Entry<String,Object> entry : entry2.entrySet()) {
-//                    rspec.addQueryParam(entry.getKey(),entry.getValue());
-//                }
-//            }
+
         }
 
         switch (method.toLowerCase()){
