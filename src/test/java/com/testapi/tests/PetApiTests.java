@@ -6,6 +6,9 @@ import com.testapi.pojo.petApiPojos.Pet;
 import com.testapi.pojo.petApiPojos.Status;
 import com.testapi.utils.Parser;
 import com.testapi.utils.Utility;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,10 +16,13 @@ import java.util.*;
 
 //uses PetApi instance which needs requestSpecBuilder initialized and configured in the BaseTest
 //sometimes the tests fail because the API is not always working since it is public
+@Feature("Pet API")
 public class PetApiTests extends BaseTest {
     
     @Test
+    @Description("Get Pet by ID")
     public void testPetApiGetPetById() {
+        Allure.step("Test allure");
         PetApi petApi = new PetApi(requestSpecBuilder);
         Response response = petApi.getPetById(5);
         Pet pet = response.getBody().as(Pet.class);
@@ -28,6 +34,7 @@ public class PetApiTests extends BaseTest {
     }
 
     @Test
+    @Description("Get Pet by STATUS")
     public void testPetApiGetPetsByStatus() {
         PetApi petApi = new PetApi(requestSpecBuilder);
         String status = Status.AVAILABLE.status;
@@ -41,6 +48,7 @@ public class PetApiTests extends BaseTest {
     }
 
     @Test
+    @Description("Create a new Pet")
     // create a pet - either build a Pet obj from pojo ( using setters or make a explicit constructor for Pet ( add also implicit one - needed for mapping response)),
     //          or send it static from a json file in resources/testData
     // this test firstly get all pet ids to generate a unique one, then creates a new pet and POST, then verifies it was indeed created
@@ -71,6 +79,7 @@ public class PetApiTests extends BaseTest {
     }
 
     @Test
+    @Description("Update a pet")
     public void updatePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);
         //find the pet to be updated or just send the update request with the new values
@@ -90,6 +99,7 @@ public class PetApiTests extends BaseTest {
     }
 
     @Test
+    @Description("Delete a Pet")
     public void deletePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);
         long idOfThePet = 5;
