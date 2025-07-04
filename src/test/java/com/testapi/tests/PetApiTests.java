@@ -1,6 +1,5 @@
 package com.testapi.tests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.testapi.apis.PetApi;
 import com.testapi.init.BaseTest;
 import com.testapi.pojo.petApiPojos.Pet;
@@ -12,7 +11,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.util.*;
 
-//uses PetApi instance which needs reqestSpecBuilder initialized and configured in the BaseTest
+//uses PetApi instance which needs requestSpecBuilder initialized and configured in the BaseTest
+//sometimes the tests fail because the API is not always working since it is public
 public class PetApiTests extends BaseTest {
     
     @Test
@@ -100,7 +100,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(petToBeDeleted.getId(), idOfThePet);
         System.out.println("Pet to be deleted: " + petToBeDeleted);
         //delete the pet
-        Response deleteThePet = petApi.daletePet((int) idOfThePet);
+        Response deleteThePet = petApi.deletePet((int) idOfThePet);
         Assert.assertEquals(deleteThePet.getStatusCode(), 200);
         //after delete the check 404
         Response deletedPet = petApi.getPetById((int) idOfThePet);

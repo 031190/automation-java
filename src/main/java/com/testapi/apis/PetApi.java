@@ -6,6 +6,7 @@ import com.testapi.pojo.petApiPojos.Pet;
 import com.testapi.pojo.petApiPojos.Status;
 import com.testapi.restAssuredWrapper.ApiBuilder;
 import com.testapi.utils.ConfigLoader;
+import com.testapi.utils.Parser;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 
@@ -13,9 +14,12 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
+
 public class PetApi extends ApiBuilder {
     public PetApi(RequestSpecBuilder specBuilder) {
         super(specBuilder);
+        specBuilder.addHeaders(ConfigLoader.getRestApiKey());
     }
 
     public Response getPetById(Integer petId) {
@@ -37,15 +41,9 @@ public class PetApi extends ApiBuilder {
                 body,null,null);
     }
 
-    public Response daletePet(Integer petId) {
+    public Response deletePet(Integer petId) {
         return buildRequest(ConfigLoader.getPetApiRoute(),"delete",Map.of("Content-type","application/json"),
                 null,petId,null);
     }
-
-//    public Pet createPetBodyFromJsonFile(String jsonFileName) {
-//        ObjectMapper mapper = new ObjectMapper();
-//        File file = new File(jsonFileName);
-//        Pet pet = mapper.readValue(file, Pet.class);
-//    }
 
 }

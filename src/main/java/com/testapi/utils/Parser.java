@@ -10,12 +10,11 @@ import java.nio.file.Path;
 public class Parser {
 
     public static String getFileAsStringFromResources(String jsonFileName) {
-        try {
+        try(InputStream is = Parser.class.getClassLoader().getResourceAsStream("testData/" + jsonFileName);) {
             //File file = new File("src/test/resources/testData/" + jsonFileName);
            // FileInputStream fs = new FileInputStream(file);
-            InputStream is = Parser.class.getClassLoader().getResourceAsStream("testData/" + jsonFileName);
             return new String(is.readAllBytes());
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             System.out.println("FILE " + jsonFileName + " NOT FOUND");
             throw new RuntimeException(e);
         }
