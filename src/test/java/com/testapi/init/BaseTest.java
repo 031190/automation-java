@@ -11,7 +11,7 @@ public class BaseTest {
 
     protected RequestSpecBuilder requestSpecBuilder;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setup() {
         requestSpecBuilder = new RequestSpecBuilder();
         requestSpecBuilder.setBaseUri(ConfigLoader.getBaseUrl());

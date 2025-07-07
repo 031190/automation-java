@@ -13,6 +13,7 @@ public class ConfigLoader {
 
     static {
         try{
+            System.out.println("Env run: " + System.getProperty("env", "dev") + ".properties");
             InputStream envFile = ConfigLoader.class.getClassLoader().getResourceAsStream(System.getProperty("env", "dev") + ".properties");
             props.load(envFile);
             InputStream configFile = ConfigLoader.class.getClassLoader().getResourceAsStream("config.properties");

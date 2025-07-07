@@ -16,10 +16,9 @@ import java.util.*;
 
 //uses PetApi instance which needs requestSpecBuilder initialized and configured in the BaseTest
 //sometimes the tests fail because the API is not always working since it is public
-@Feature("Pet API")
 public class PetApiTests extends BaseTest {
     
-    @Test
+    @Test(groups = {"smoke","regression"})
     @Description("Get Pet by ID")
     public void testPetApiGetPetById() {
         Allure.step("Test allure");
@@ -33,7 +32,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(response1.getStatusCode(),404);
     }
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     @Description("Get Pet by STATUS")
     public void testPetApiGetPetsByStatus() {
         PetApi petApi = new PetApi(requestSpecBuilder);
@@ -47,7 +46,7 @@ public class PetApiTests extends BaseTest {
         }
     }
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     @Description("Create a new Pet")
     // create a pet - either build a Pet obj from pojo ( using setters or make a explicit constructor for Pet ( add also implicit one - needed for mapping response)),
     //          or send it static from a json file in resources/testData
@@ -78,7 +77,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(checkNewPet.toString(), newPet.toString());
     }
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     @Description("Update a pet")
     public void updatePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);
@@ -98,7 +97,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(updatedPet.getName(), "Updated Pet by Mihail");
     }
 
-    @Test
+    @Test(groups = {"smoke","regression"})
     @Description("Delete a Pet")
     public void deletePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);
