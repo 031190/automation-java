@@ -2,6 +2,7 @@ package com.testapi.tests;
 
 import com.testapi.apis.RestApi;
 import com.testapi.init.BaseTest;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;

@@ -8,7 +8,6 @@ import com.testapi.utils.Parser;
 import com.testapi.utils.Utility;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -17,7 +16,7 @@ import java.util.*;
 //uses PetApi instance which needs requestSpecBuilder initialized and configured in the BaseTest
 //sometimes the tests fail because the API is not always working since it is public
 public class PetApiTests extends BaseTest {
-    
+
     @Test(groups = {"smoke","regression"})
     @Description("Get Pet by ID")
     public void testPetApiGetPetById() {

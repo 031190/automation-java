@@ -53,19 +53,27 @@ public class ApiBuilder {
 
         }
 
+        Response response;
         switch (method.toLowerCase()){
             case "get":
-                return given().spec(rspec.build()).log().all().get().then().log().all().extract().response();
+                response = given().spec(rspec.build()).log().all().get().then().log().all().extract().response();
+                break;
             case "post":
-                return given().spec(rspec.build()).log().all().post().then().log().all().extract().response();
+                response = given().spec(rspec.build()).log().all().post().then().log().all().extract().response();
+                break;
             case "delete":
-                return given().spec(rspec.build()).log().all().delete().then().log().all().extract().response();
+                response = given().spec(rspec.build()).log().all().delete().then().log().all().extract().response();
+                break;
             case "put":
-                return given().spec(rspec.build()).log().all().put().then().log().all().extract().response();
+                response = given().spec(rspec.build()).log().all().put().then().log().all().extract().response();
+                break;
             case "patch":
-                return given().spec(rspec.build()).log().all().patch().then().log().all().extract().response();
+                response = given().spec(rspec.build()).log().all().patch().then().log().all().extract().response();
+                break;
             default:
-                return null;
+                response = null;
+                break;
         }
+        return response;
     }
 }
