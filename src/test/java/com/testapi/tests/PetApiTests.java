@@ -45,7 +45,7 @@ public class PetApiTests extends BaseTest {
         }
     }
 
-    @Test(groups = {"smoke","regression"})
+    @Test(groups = {"regression"})
     @Description("Create a new Pet")
     // create a pet - either build a Pet obj from pojo ( using setters or make a explicit constructor for Pet ( add also implicit one - needed for mapping response)),
     //          or send it static from a json file in resources/testData
@@ -76,7 +76,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(checkNewPet.toString(), newPet.toString());
     }
 
-    @Test(groups = {"smoke","regression"})
+    @Test(groups = {"regression"})
     @Description("Update a pet")
     public void updatePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);
@@ -96,7 +96,7 @@ public class PetApiTests extends BaseTest {
         Assert.assertEquals(updatedPet.getName(), "Updated Pet by Mihail");
     }
 
-    @Test(groups = {"smoke","regression"})
+    @Test(groups = {"regression"})
     @Description("Delete a Pet")
     public void deletePet() {
         PetApi petApi = new PetApi(requestSpecBuilder);

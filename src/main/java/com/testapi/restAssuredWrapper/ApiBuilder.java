@@ -17,7 +17,7 @@ public class ApiBuilder {
         requestSpecBuilder = specBuilder;
     }
 
-    // used to get reqSpecBuilder values from a certain point - since it keeps values between tests if manipulated
+    // used to get reqSpecBuilder values from a certain point/currently using the one created in BaseTest - since it keeps values between tests if manipulated
     private RequestSpecification getRequestSpecification(){
         return requestSpecBuilder.build();
     }
