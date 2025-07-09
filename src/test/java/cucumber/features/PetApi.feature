@@ -1,5 +1,9 @@
 Feature: PetApi tests
 
-  Scenario: Get request
-    Given the user sends a get request
-    Then verify response
+  Scenario Outline: Get Pet request by ID
+    Given the user sends a pet get request by <id>
+    Then verify response <statusCode> <id>
+    Examples:
+      | id | statusCode |
+      | 5  | 200        |
+      | 20 | 404        |

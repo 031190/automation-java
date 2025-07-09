@@ -9,17 +9,23 @@ import org.testng.Assert;
 
 public class PetApiSteps extends BaseTest {
 
-    @Given("the user sends a get request")
-    public void sendGetRequest(){
+    Response response;
+
+    @Given("the user sends a pet get request by {int}")
+    public void sendGetRequest(int id){
         setup();
         PetApi petApi = new PetApi(requestSpecBuilder);
-        Response response = petApi.getPetById(5);
-        Pet pet = response.getBody().as(Pet.class);
-        System.out.println("Pet API test: " + pet.toString());
-        Assert.assertEquals(response.getStatusCode(),200);
+        response = petApi.getPetById(id);
     }
 
-    @Then("verify response")
-    public void verifyResponse() {
+    @Then("verify response (.*) (.*)$")
+    public void verifyResponse(int statusCode, int id) {
+        Assert.assertEquals(response.getStatusCode(),statusCode);
+        if (statusCode == 200) {
+            Pet pet = response.getBody().as(Pet.class);
+            Assert.assertEquals(id, pet.getId());
+        }
+
+
     }
 }
