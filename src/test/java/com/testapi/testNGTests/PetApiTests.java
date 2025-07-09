@@ -1,4 +1,4 @@
-package com.testapi.tests;
+package com.testapi.testNGTests;
 
 import com.testapi.apis.PetApi;
 import com.testapi.init.BaseTest;

@@ -1,8 +1,7 @@
-package com.testapi.tests;
+package com.testapi.testNGTests;
 
 import com.testapi.apis.RestApi;
 import com.testapi.init.BaseTest;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
